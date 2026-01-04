@@ -5260,7 +5260,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1f234798a8ad648bab327fd65687ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGameButton: {fileID: 1594103443}
+  onSessionChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1594103441}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1301674164
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,12 +2,13 @@ using System;
 using Unity.Netcode;
 using Unity.Services.Multiplayer;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private Button startGameButton;
+    [SerializeField] private UnityEvent<bool> onSessionChanged;
 
     private ISession session;
 
@@ -23,19 +24,20 @@ public class MainMenu : MonoBehaviour
 
     public void OnJoinedSession(ISession session)
     {
-        startGameButton.gameObject.SetActive(session.IsHost);
+        onSessionChanged.Invoke(session.IsHost);
         this.session = session;
         session.Changed += OnSessionChanged;
     }
 
     public void OnSessionLeaved()
     {
+        if (session == null) return;
         session.Changed -= OnSessionChanged;
         session = null;
     }
 
     private void OnSessionChanged()
     {
-        startGameButton.gameObject.SetActive(session.IsHost);
+        onSessionChanged.Invoke(session.IsHost);
     }
 }
